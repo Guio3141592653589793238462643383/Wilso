@@ -1,0 +1,72 @@
+{
+    "proyecto": {
+        "rol": {
+            "id_rol": "int, auto_increment, primary_key",
+            "rol": "varchar(20), not_null"
+        },
+        "correo": {
+            "id_correo": "int, auto_increment, primary_key",
+            "correo": "varchar(255), not_null"
+        },
+        "nacionalidad": {
+            "id_nac": "int, auto_increment, primary_key",
+            "nacionalidad": "varchar(50), not_null"
+        },
+        "intereses": {
+            "id_inte": "int, auto_increment, primary_key",
+            "interes": "varchar(80), not_null"
+        },
+        "inte_categoria": {
+            "id_inte_cate": "int, auto_increment, primary_key",
+            "categoria": "varchar(80), not_null",
+            "id_inte": "int, foreign_key -> intereses.id_inte"
+        },
+        "usuario": {
+            "id_usuario": "int, auto_increment, primary_key",
+            "primer_nombre": "varchar(50), not_null",
+            "segundo_nombre": "varchar(50), not_null",
+            "primer_apellido": "varchar(50), not_null",
+            "segundo_apellido": "varchar(50), not_null",
+            "clave": "varchar(20), not_null",
+            "id_rol": "int, foreign_key -> rol.id_rol",
+            "id_correo": "int, foreign_key -> correo.id_correo",
+            "id_nac": "int, foreign_key -> nacionalidad.id_nac",
+            "id_inte": "int, foreign_key -> intereses.id_inte"
+        },
+        "reporte_incidente": {
+            "id_report": "int, auto_increment, primary_key",
+            "descripcion": "varchar(255), not_null",
+            "fecha_report": "datetime, not_null",
+            "estado": "varchar(80), not_null",
+            "id_usuario": "int, foreign_key -> usuario.id_usuario"
+        },
+        "comentarios": {
+            "id_com": "int, primary_key",
+            "tipo_com": "varchar(50), not_null",
+            "fecha_com": "date, not_null",
+            "id_usuario": "int, foreign_key -> usuario.id_usuario"
+        },
+        "lugar": {
+            "id_lugar": "int, primary_key",
+            "nombre_lugar": "varchar(60), not_null",
+            "tipo_lugar": "varchar(60), not_null",
+            "direccion": "varchar(255), not_null",
+            "hora_aper": "time, not_null",
+            "hora_cierra": "time, not_null",
+            "precios": "int, not_null",
+            "id_usuario": "int, foreign_key -> usuario.id_usuario"
+        },
+        "alerta": {
+            "id_alerta": "int, primary_key",
+            "tipo_aler": "varchar(255), not_null",
+            "fecha_alerta": "date, not_null",
+            "id_lugar": "int, foreign_key -> lugar.id_lugar"
+        },
+        "rutas": {
+            "id_ruta": "int, auto_increment, primary_key",
+            "inicio_ruta": "varchar(50), not_null",
+            "fin_ruta": "varchar(50), not_null",
+            "id_lugar": "int, foreign_key -> lugar.id_lugar"
+        }
+    }
+}
